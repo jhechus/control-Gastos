@@ -1,9 +1,14 @@
 import CerrarBtn from '../img/cerrar.svg'
 
-function Modal({setModal}) {
+function Modal({setModal, animarModal, setAnimarModal}) {
 
     const ocultarNodal = () => {
-        setModal(false)
+        
+        setAnimarModal(false)
+
+        setTimeout(() => {
+          setModal(false)
+        }, 500);
     }
 
 
@@ -16,6 +21,12 @@ function Modal({setModal}) {
             onClick={ocultarNodal}
         />
       </div>
+
+      <form className={`formulario ${animarModal ? "animar" : "cerrar"}`}>
+        <legend>
+          Nuevo Gasto
+        </legend>
+      </form>
     </div>
   )
 }
