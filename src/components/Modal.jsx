@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import CerrarBtn from '../img/cerrar.svg'
 
 function Modal({setModal, animarModal, setAnimarModal}) {
+
+    const [nombre, setNombre] = useState('')
+    const [cantidad, setCantidad] = useState('')
+    const [categoria, setCategoria] = useState('')
 
     const ocultarNodal = () => {
         
@@ -31,9 +36,11 @@ function Modal({setModal, animarModal, setAnimarModal}) {
           <label htmlFor="Gasto">Nombre del Gasto</label>
 
           <input 
-            id='nombre'
-            type="text"
+            id         ='nombre'
+            type       ="text"
             placeholder='Añade el Gasto' 
+            value      ={nombre}
+            onChange   ={ e => setNombre(e.target.value)}
           />
         </div>
 
@@ -44,14 +51,18 @@ function Modal({setModal, animarModal, setAnimarModal}) {
             id         ='cantidad'
             type       ="text"
             placeholder='Añade la cantidad' 
+            value      ={cantidad}
+            onChange   ={ e => setCantidad(Number(e.target.value))}
           />
         </div>
 
         <div className=' campo'>
           <label htmlFor="categoria">Categoria</label>
             <select 
-              name="" 
-              id="categoria">
+              name       ="" 
+              id         ="categoria"
+              value      ={categoria}
+              onChange   ={ e => setCategoria(e.target.value)}>
                 <option value=""             > -- Seleccione -- </option>
                 <option value="ahorro"       > Ahorro           </option>
                 <option value="comida"       > Comida           </option>
