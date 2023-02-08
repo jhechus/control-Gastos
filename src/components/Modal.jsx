@@ -13,7 +13,7 @@ function Modal({setModal, animarModal, setAnimarModal, guardarGasto}) {
         setAnimarModal(false)
         setTimeout(() => {
           setModal(false)
-        }, 500);
+        }, 400);
     }
 
     const handleSubmit = e => {
