@@ -7,7 +7,8 @@ function Modal({
   animarModal, 
   setAnimarModal, 
   guardarGasto, 
-  gastoEditar
+  gastoEditar,
+  setGastoEditar
 }) {
 
     const [mensaje,setMensaje] = useState('');
@@ -29,9 +30,10 @@ function Modal({
 
     const ocultarNodal = () => {
         setAnimarModal(false)
+        setGastoEditar({})
         setTimeout(() => {
           setModal(false)
-        }, 400);
+        }, 200);
     }
 
     const handleSubmit = e => {
