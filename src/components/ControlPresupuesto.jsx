@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import Swal from "sweetalert2"
 import 'react-circular-progressbar/dist/styles.css'
 
-function ControlPresupuesto({gastos, presupuesto}) {
+function ControlPresupuesto({
+    gastos, 
+    presupuesto,
+    setGastos,
+    setPresupuesto,
+    setIsValidPresupuesto
+}) {
 
     const [ porcentaje, setPorcentaje] = useState(0)
     const [ disponible, setDisponible] =useState(0)
@@ -32,6 +39,26 @@ function ControlPresupuesto({gastos, presupuesto}) {
         })
     }
 
+    const handleResetApp = () => {
+        Swal.fire({
+            title: 'Seguro que quieres eliminar el presupuesto actual?',
+            text: 'Se eliminaran los gastos y el presupuesto',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#3b82f6',
+            cancelButtonText: 'Cancelar',
+            width: '40%',
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+                setGastos([])
+                setPresupuesto(0)
+                setIsValidPresupuesto(false)
+            } 
+          })
+    }
+
   return (
     <div className=' contenedor-presupuesto contenedor sombra dos-columnas'>
         <div>
@@ -49,6 +76,13 @@ function ControlPresupuesto({gastos, presupuesto}) {
         </div>
 
         <div className=' contenido-presupuesto'>
+            <button
+                className=" reset-app"
+                type="button"
+                onClick={handleResetApp}
+            >
+                Resetear presupuesto
+            </button>
             <p>
                 <span> presupuesto: </span> {formatearCantidad(presupuesto)}
             </p>
